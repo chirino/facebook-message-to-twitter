@@ -4,40 +4,21 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.redhat.ipaas.integrations</groupId>
+  <groupId>io.syndesis.integrations</groupId>
   <artifactId>project</artifactId>
   <version>0.1-SNAPSHOT</version>
-  <name>iPaaS Integrations :: Facebook Message to Twitter</name>
+  <name>Syndesis Integrations :: Facebook Message to Twitter</name>
   <description>This is an example in Deactivated state</description>
   <packaging>jar</packaging>
 
   <properties>
     <spring-boot.version>1.5.2.RELEASE</spring-boot.version>
-    <spring-cloud-kubernetes.version>0.1.5</spring-cloud-kubernetes.version>
-    <camel.version>2.19.0.fuse-000036</camel.version>
+    <camel.version>2.20.0.fuse-000042</camel.version>
     <funktion.version>1.1.55</funktion.version>
+    <atlasmap.version>1.10.0</atlasmap.version>
   </properties>
 
   <repositories>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>ipaas-releases</id>
-      <name>ipaas-releases</name>
-      <url>https://dl.bintray.com/redhat-ipaas/maven/</url>
-    </repository>
-    <repository>
-      <id>apache.snapshots</id>
-      <name>Apache Development Snapshot Repository</name>
-      <url>https://repository.apache.org/content/repositories/snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
     <repository>
       <snapshots>
         <enabled>false</enabled>
@@ -47,25 +28,15 @@
       <url>https://jcenter.bintray.com</url>
     </repository>
     <repository>
+      <releases><updatePolicy>never</updatePolicy></releases>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
       <id>jboss.ea</id>
-      <name>JBoss EA</name>
+      <name>JBoss Community Early Access Release Repository</name>
       <url>https://repository.jboss.org/nexus/content/groups/ea</url>
     </repository>
   </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>jboss.ea</id>
-      <name>JBoss EA</name>
-      <url>https://repository.jboss.org/nexus/content/groups/ea</url>
-    </pluginRepository>
-  </pluginRepositories>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -78,14 +49,7 @@
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-spring-boot-dependencies</artifactId>
-        <version>2.19.0.fuse-000036</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>io.fabric8</groupId>
-        <artifactId>spring-cloud-kubernetes-bom</artifactId>
-        <version>0.1.5</version>
+        <version>2.20.0.fuse-000042</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -93,22 +57,28 @@
   </dependencyManagement>
 
   <dependencies>
+    <!-- atlasmap runtime -->
+    <dependency>
+      <groupId>io.atlasmap</groupId>
+      <artifactId>camel-atlasmap</artifactId>
+      <version>1.10.0</version>
+    </dependency>
 
     <!-- connectors used in this integration -->
     <dependency>
-      <groupId>com.redhat.ipaas</groupId>
+      <groupId>io.syndesis</groupId>
       <artifactId>timer-connector</artifactId>
-      <version>0.3.6</version>
+      <version>0.4.4</version>
     </dependency>
     <dependency>
-      <groupId>com.redhat.ipaas</groupId>
+      <groupId>io.syndesis</groupId>
       <artifactId>http-post-connector</artifactId>
-      <version>0.3.6</version>
+      <version>0.4.4</version>
     </dependency>
     <dependency>
-      <groupId>com.redhat.ipaas</groupId>
+      <groupId>io.syndesis</groupId>
       <artifactId>http-get-connector</artifactId>
-      <version>0.3.6</version>
+      <version>0.4.4</version>
     </dependency>
 
     <!-- spring-boot as runtime -->
@@ -128,10 +98,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    <dependency>
-      <groupId>io.fabric8</groupId>
-      <artifactId>spring-cloud-kubernetes-core</artifactId>
-    </dependency>
 
     <!-- Funktion runtime -->
     <dependency>
@@ -149,7 +115,7 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test</artifactId>
-      <version>2.19.0.fuse-000036</version>
+      <version>2.20.0.fuse-000042</version>
       <scope>test</scope>
     </dependency>
 
